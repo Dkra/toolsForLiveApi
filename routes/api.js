@@ -2,7 +2,7 @@ const Router = require('koa-router');
 const router = new Router();
 const path = require('path');
 const bluebird = require('bluebird');
-var cmd=require('node-cmd');
+var cmd = require('node-cmd');
 
 
 router.get('/search591', async (ctx) => {
