@@ -1,0 +1,18 @@
+version: '3'
+services:
+  api:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/usr/src/app
+    links:
+      - web
+  web:
+    image: dkra4741/tools-for-live
+    ports: 
+      - "3000:3000" # host port:container export port
+    environment:
+      port: "3000" # specify server listen port set to 3000 in server.js file 
+
+  
