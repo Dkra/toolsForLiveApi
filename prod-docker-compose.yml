@@ -1,7 +1,7 @@
 version: '3'
 services:
   api:
-    build: dkra4741/tools-for-live-api
+    image: dkra4741/tools-for-live-api
     ports:
       - "8888:8888"
     volumes:

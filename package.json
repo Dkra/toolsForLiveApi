@@ -1,4 +1,6 @@
 {
+	"name": "tools-for-live-api",
+	"version": "0.0.1",
 	"dependencies": {
 		"axios": "^0.18.0",
 		"bluebird": "^3.5.1",
