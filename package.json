@@ -1,6 +1,10 @@
 {
 	"name": "tools-for-live-api",
-	"version": "0.0.1",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "git@github.com:Dkra/toolsForLiveApi.git",
+	"author": "roger.jiang <roger.jiang@afusion.com>",
+	"license": "MIT",
 	"dependencies": {
 		"axios": "^0.18.0",
 		"bluebird": "^3.5.1",
