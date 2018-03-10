@@ -85,22 +85,29 @@ router.get('/search591', async ctx => {
 
 router.get('/search104', async ctx => {
 	try {
-		const combineJobRequest = maxPageSize => {
+		// area either "tpe" or "tch" 台北/台中
+		const tpeAreaGroup = '2C6001001000'
+		const tchAreaGroup = '6001008000'
+		const { area } = ctx.query
+		const encodedArea = area === 'tpe' ? tpeAreaGroup : tchAreaGroup
+		const combineJobRequest = (maxPageSize, area) => {
 			const combineArr = []
 			const getUrl = pageNum =>
-				`https://www.104.com.tw/jobs/search/list?ro=0&jobcat=2001001003%2C2004001005%2C2004001007%2C2004001006%2C2005003005&area=6001008006%2C6001008005%2C6001008001%2C6001008002%2C6001008004%2C6001008007&order=2&asc=0&page=${pageNum}&mode=s&jobsource=n104bank1`
+				`https://www.104.com.tw/jobs/search/list?ro=0&jobcat=2001001003%2C2004001005%2C2004001007%2C2004001006%2C2005003005&area=${area}&order=2&asc=0&page=${pageNum}&mode=s&jobsource=n104bank1`
 			for (let i = 1; i <= maxPageSize; i++) {
 				combineArr.push(ax.get(getUrl(i)))
 			}
 			return ax.all(combineArr)
 		}
 
-		const combinedJobData = await combineJobRequest(50)
+		const combinedJobData = await combineJobRequest(50, encodedArea)
+
+		// re-structure job data
 		const returnData = combinedJobData.reduce(
 			(combinedArr, pageData) => [...combinedArr, ...pageData.data.data.list],
 			[]
 		)
-		// .sort((a, b) => b.appearDate - a.appearDate)
+
 		ctx.body = returnData
 	} catch (err) {
 		console.log('err:', err)
