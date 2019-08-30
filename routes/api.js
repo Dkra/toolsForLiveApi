@@ -19,11 +19,16 @@ router.get("/search591/black-list", ctx => {
 router.post("/search591/black-list/add", ctx => {
   const { id } = ctx.request.body;
   const rs = fs.readFileSync("black-list.json", "utf8");
-  const newBlackList = JSON.parse(rs).includes(id)
+  const newBlackListObj = JSON.parse(rs)[id]
     ? JSON.parse(rs)
-    : [...JSON.parse(rs), id];
+    : {
+        ...JSON.parse(rs),
+        [id]: true
+      };
 
-  fs.writeFile("black-list.json", JSON.stringify(newBlackList), function(err) {
+  fs.writeFile("black-list.json", JSON.stringify(newBlackListObj), function(
+    err
+  ) {
     if (err) console.log(err);
     else console.log("Write operation complete.");
   });
