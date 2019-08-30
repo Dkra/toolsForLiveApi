@@ -4,15 +4,16 @@ services:
     image: dkra4741/tools-for-live-api
     ports:
       - "8888:8888"
-    volumes:
-      - .:/usr/src/app
+    # volumes:
+    #   - .:/usr/src/app
+    working_dir: /usr/src/app
+    environment:
+      - NODE_ENV=production
     links:
       - web
   web:
     image: dkra4741/tools-for-live
     ports: 
-      - "80:3000" # host port:container export port
-    environment:
-      port: "3000" # specify server listen port set to 3000 in server.js file 
+      - "80:80" # host port:container export port
 
   
