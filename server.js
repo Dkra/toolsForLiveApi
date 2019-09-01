@@ -30,5 +30,4 @@ app.use(
 // add router middleware:
 app.use(router.routes(), router.allowedMethods());
 
-// Listen on Port
-app.listen(port);
+module.exports = app.listen(port);

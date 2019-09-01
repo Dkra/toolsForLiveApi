@@ -15,5 +15,18 @@
 		"koa-router": "^7.2.1",
 		"koa2-cors": "^2.0.3",
 		"node-cmd": "^3.0.0"
-	}
+	},
+	"scripts": {
+		"test": "jest --watch"
+	},
+	"devDependencies": {
+		"jest": "^24.9.0",
+		"supertest": "^4.0.2"
+	},
+	"jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
 }

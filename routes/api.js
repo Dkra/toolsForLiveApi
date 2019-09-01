@@ -6,6 +6,14 @@ const cmd = require("node-cmd");
 const fs = require("fs");
 const ax = require("axios");
 
+router.get("/helloworld", ctx => {
+  try {
+    ctx.status = 200;
+  } catch (err) {
+    console.log("err:", err);
+  }
+});
+
 router.get("/search591/black-list", ctx => {
   try {
     const rs = fs.readFileSync("black-list.json", "utf8");
@@ -61,6 +69,7 @@ router.post("/search591/black-list/deleteAllNotProtected", async ctx => {
   ctx.status = 200;
 });
 
+// Get
 router.get("/search591/protect-list", ctx => {
   try {
     const fileStr = fs.readFileSync("protect-list.json", "utf8");
@@ -86,7 +95,7 @@ router.post("/search591/protect-list/", ctx => {
     err
   ) {
     if (err) console.log(err);
-    else console.log("Write operation complete.");
+    else ctx.status = 204;
   });
 
   return (ctx.status = 200);
@@ -210,36 +219,5 @@ router.get("/search591", async ctx => {
     ctx.body = JSON.stringify({ error: error.code });
   }
 });
-
-// router.get("/search104", async ctx => {
-//   try {
-//     // area either "tpe" or "tch" 台北/台中
-//     const tpeAreaGroup = "2C6001001000";
-//     const tchAreaGroup = "6001008000";
-//     const { area } = ctx.query;
-//     const encodedArea = area === "tpe" ? tpeAreaGroup : tchAreaGroup;
-//     const combineJobRequest = (maxPageSize, area) => {
-//       const combineArr = [];
-//       const getUrl = pageNum =>
-//         `https://www.104.com.tw/jobs/search/list?ro=0&jobcat=2001001003%2C2004001005%2C2004001007%2C2004001006%2C2005003005&area=${area}&order=2&asc=0&page=${pageNum}&mode=s&jobsource=n104bank1`;
-//       for (let i = 1; i <= maxPageSize; i++) {
-//         combineArr.push(ax.get(getUrl(i)));
-//       }
-//       return ax.all(combineArr);
-//     };
-
-//     const combinedJobData = await combineJobRequest(50, encodedArea);
-
-//     // re-structure job data
-//     const returnData = combinedJobData.reduce(
-//       (combinedArr, pageData) => [...combinedArr, ...pageData.data.data.list],
-//       []
-//     );
-
-//     ctx.body = returnData;
-//   } catch (err) {
-//     console.log("err:", err);
-//   }
-// });
 
 module.exports = router;
