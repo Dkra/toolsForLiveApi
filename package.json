@@ -6,7 +6,7 @@
 	"author": "roger.jiang <roger.jiang@afusion.com>",
 	"license": "MIT",
 	"dependencies": {
-		"axios": "^0.18.0",
+		"axios": "^0.18.1",
 		"bluebird": "^3.5.1",
 		"koa": "^2.3.0",
 		"koa-bodyparser": "^4.2.0",
