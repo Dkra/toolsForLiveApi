@@ -150,7 +150,7 @@ const generateQuery = ({
 	`
     : `
   curl -X GET \
-  'https://rent.591.com.tw/home/search/rsList?is_new_list=1&type=1&kind=2&searchtype=1&region=1&section=5,3,7,4,1&rentprice=${priceLow},${priceHigh}&area=8,12&not_cover=1&role=1&firstRow=0' \
+  'https://rent.591.com.tw/home/search/rsList?is_new_list=1&type=1&kind=2&searchtype=1&region=1&section=5,3,7,4,1&rentprice=${priceLow},${priceHigh}&area=8,12&not_cover=1&role=1&firstRow=${firstRow}' \
   -H 'Accept: application/json, text/javascript, */*; q=0.01' \
   -H 'Accept-Language: en-US,en;q=0.9,zh-TW;q=0.8,zh;q=0.7,hr;q=0.6,th;q=0.5' \
   -H 'Cache-Control: no-cache' \
